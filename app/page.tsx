@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 // This is a single-file Next.js-compatible React component (pages/index.tsx or app/page.tsx style)
 // Tailwind CSS is used for styling. Replace placeholder links/descriptions with your real content.
 
+
+
 const projects = [
   {
     id: 1,
@@ -54,7 +56,8 @@ const projects = [
     tech: ["Kafka", "Flink", "Docker"],
     repo: "https://github.com/your-github/etl-pipeline",
     demo: "#"
-  },
+  }
+],
   {
     id: 999,
     title: "New Project Placeholder",
@@ -108,34 +111,37 @@ export default function Portfolio() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-8">
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-16">
           <div className="md:col-span-2">
-            <h2 className="text-2xl font-semibold">Hi — I’m {name}.</h2>
+            <h2 className="text-3xl font-semibold">Hi, I’m Raj Kamal Singh</h2>
+            <p className="mt-5 leading-relaxed text-gray-700 dark:text-gray-300">
+              I am a Data Scientist and Machine Learning Engineer with hands-on experience building
+              predictive models, deep learning systems, and end-to-end ML pipelines. I am currently
+              pursuing an M.S. in Data Science at the University of Maryland, College Park, and have
+              industry experience deploying scalable systems across finance, computer vision, and
+              cloud-based applications.
+            </p>
             <p className="mt-4 leading-relaxed text-gray-700 dark:text-gray-300">
-              I build production-ready machine learning systems and data pipelines. I enjoy shipping
-              models that make a measurable impact and building infrastructure to keep them reliable.
+              I have a strong interest in production ML, research-driven development, and building
+              reliable AI systems that create measurable impact. My background includes published
+              IEEE research, real-time ML pipelines, and cloud-native deployments.
             </p>
 
-            <div className="mt-6 flex gap-4">
-              <a
-                href={github}
-                className="inline-block border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                GitHub
-              </a>
-              <a
-                href={linkedin}
-                className="inline-block border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                LinkedIn
-              </a>
+            <div className="mt-7 flex gap-4 flex-wrap">
+              <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">GitHub</a>
+              <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">LinkedIn</a>
+              <a href="#" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">Download Resume</a>
             </div>
           </div>
 
           <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-md">
-            <h3 className="text-lg font-medium">Contact</h3>
-            <p className="text-sm mt-2">{email}</p>
-            <p className="text-sm mt-2">Open to ML / Data Science roles — remote or hybrid.</p>
+            <h3 className="text-lg font-medium">Quick Info</h3>
+            <ul className="mt-3 text-sm space-y-2">
+              <li><strong>Degree:</strong> M.S. Data Science (UMD)</li>
+              <li><strong>Graduation:</strong> May 2026</li>
+              <li><strong>Location:</strong> United States</li>
+              <li><strong>Status:</strong> Open to ML / Data Science roles</li>
+            </ul>
           </div>
         </section>
 
@@ -180,22 +186,57 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="about" className="mb-12">
-          <h2 className="text-xl font-semibold mb-4">About</h2>
+        <section id="about" className="mb-16">
+          <h2 className="text-2xl font-semibold mb-6">Education</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
-              <h4 className="font-medium">Background</h4>
-              <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-                I have experience building ML models, deploying services on cloud platforms, and
-                building data pipelines. I enjoy taking projects from prototype to production.
-              </p>
+              <h4 className="font-medium">M.S. in Data Science</h4>
+              <p className="text-sm mt-1">University of Maryland, College Park</p>
+              <p className="text-sm mt-1">CGPA: 3.86 · Expected May 2026</p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
-              <h4 className="font-medium">What I’m working on</h4>
-              <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-                Improving model robustness, experimenting with LLM-based retrieval systems, and
-                building observability for ML systems.
-              </p>
+              <h4 className="font-medium">B.Tech in Computer Science & Engineering</h4>
+              <p className="text-sm mt-1">University of Petroleum and Energy Studies</p>
+              <p className="text-sm mt-1">CGPA: 7.92 · June 2020</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-6">Research & Publications</h2>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <h4 className="font-medium">GAN & IEC Approach for Image Generation</h4>
+            <p className="text-sm mt-2">IEEE ISMSIT 2022</p>
+            <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+              Developed a GAN model coupled with Improved Evolutionary Computing (IEC) to generate
+              high-quality synthetic images. Achieved a 94% realism rating and reduced model collapse
+              by 20% through improved training strategies.
+            </p>
+            <p className="mt-3 text-sm italic">Paper link will be added soon.</p>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-6">Professional Experience</h2>
+          <div className="grid gap-6">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+              <h4 className="font-medium">Quality Analyst — Nimbbl</h4>
+              <p className="text-sm mt-1">July 2022 – July 2024</p>
+              <ul className="mt-3 text-sm list-disc list-inside space-y-1">
+                <li>Reduced critical production defects by 30% through workflow optimization.</li>
+                <li>Implemented API automation using JMeter, improving test execution speed by 50%.</li>
+                <li>Resolved 92% of reported issues within sprint cycles using data-driven analysis.</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+              <h4 className="font-medium">Quality Assurance Engineer — LTI</h4>
+              <p className="text-sm mt-1">June 2020 – June 2022</p>
+              <ul className="mt-3 text-sm list-disc list-inside space-y-1">
+                <li>Reduced post-release defects by 25% through systematic test design.</li>
+                <li>Managed 500+ test cases ensuring 100% functional coverage.</li>
+                <li>Achieved 97% on-time delivery across multiple enterprise projects.</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -238,3 +279,4 @@ export default function Portfolio() {
     </div>
   );
 }
+
