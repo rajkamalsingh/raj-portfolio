@@ -57,7 +57,6 @@ const projects = [
     repo: "https://github.com/your-github/etl-pipeline",
     demo: "#"
   }
-],
   {
     id: 999,
     title: "New Project Placeholder",
