@@ -228,8 +228,8 @@ export default function Portfolio() {
                   </a>
                 </div>
               </article>
-            ))}
-          
+            )}
+          </div>
         </section>
 
         <section id="about" className="mb-16">
