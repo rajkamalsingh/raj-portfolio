@@ -1,10 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+
 // This is a single-file Next.js-compatible React component (pages/index.tsx or app/page.tsx style)
 // Tailwind CSS is used for styling. Replace placeholder links/descriptions with your real content.
-
-
 
 const projects = [
   {
@@ -88,63 +87,78 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
-      <header className="max-w-5xl mx-auto p-6 flex items-center justify-between">
+      <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">{name}</h1>
-          <p className="mt-1 text-sm opacity-80">{tagline}</p>
+          <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
+          <p className="mt-1 text-sm opacity-80">Data Scientist | Machine Learning Engineer | Data & AI Systems</p>
         </div>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-4 text-sm">
             <a href="#projects" className="hover:underline">Projects</a>
+            <a href="#skills" className="hover:underline">Skills</a>
             <a href="#about" className="hover:underline">About</a>
             <a href="#contact" className="hover:underline">Contact</a>
           </nav>
-          <button
-            onClick={() => setDark((d) => !d)}
-            aria-label="Toggle theme"
-            className="border rounded-md px-3 py-1 text-sm"
-          >
+          <button onClick={() => setDark((d) => !d)} className="border rounded-md px-3 py-1 text-sm">
             {dark ? "Light" : "Dark"}
           </button>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-8">
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-16">
-          <div className="md:col-span-2">
-            <h2 className="text-3xl font-semibold">Hi, I’m Raj Kamal Singh</h2>
-            <p className="mt-5 leading-relaxed text-gray-700 dark:text-gray-300">
-              I am a Data Scientist and Machine Learning Engineer with hands-on experience building
-              predictive models, deep learning systems, and end-to-end ML pipelines. I am currently
-              pursuing an M.S. in Data Science at the University of Maryland, College Park, and have
-              industry experience deploying scalable systems across finance, computer vision, and
-              cloud-based applications.
-            </p>
-            <p className="mt-4 leading-relaxed text-gray-700 dark:text-gray-300">
-              I have a strong interest in production ML, research-driven development, and building
-              reliable AI systems that create measurable impact. My background includes published
-              IEEE research, real-time ML pipelines, and cloud-native deployments.
-            </p>
-
-            <div className="mt-7 flex gap-4 flex-wrap">
-              <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">GitHub</a>
-              <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">LinkedIn</a>
-              <a href="#" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">Download Resume</a>
-            </div>
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center mb-20">
+        <div className="md:col-span-2">
+          <h2 className="text-4xl font-semibold leading-tight">
+            Building data-driven systems that scale from analysis to production
+          </h2>
+          <p className="mt-6 leading-relaxed text-gray-700 dark:text-gray-300">
+            I am a Data Scientist and Machine Learning Engineer with experience across data analysis,
+            predictive modeling, deep learning, and production ML systems. Currently pursuing an
+            M.S. in Data Science at the University of Maryland, I focus on transforming data into
+            reliable, real-world solutions.
+          </p>
+          <p className="mt-4 leading-relaxed text-gray-700 dark:text-gray-300">
+            My work spans time-series forecasting, computer vision, research-driven model development,
+            and cloud-based deployment. I enjoy bridging research ideas with practical business and
+            engineering constraints.
+          </p>
+          <div className="mt-8 flex gap-4 flex-wrap">
+            <a href="#" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">Download Resume</a>
+            <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">GitHub</a>
+            <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">LinkedIn</a>
           </div>
+        </div>
+        <div className="flex justify-center">
+          <img src="/profile.jpg" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
+        </div>
+      </section>
 
-          <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-md">
-            <h3 className="text-lg font-medium">Quick Info</h3>
-            <ul className="mt-3 text-sm space-y-2">
-              <li><strong>Degree:</strong> M.S. Data Science (UMD)</li>
-              <li><strong>Graduation:</strong> May 2026</li>
-              <li><strong>Location:</strong> United States</li>
-              <li><strong>Status:</strong> Open to ML / Data Science roles</li>
+        <section id="skills" className="mb-20">
+        <h2 className="text-2xl font-semibold mb-6">Skills Snapshot</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <h4 className="font-medium mb-2">Core Expertise</h4>
+            <ul className="text-sm space-y-1">
+              <li>Machine Learning & Deep Learning</li>
+              <li>Time Series Forecasting & Feature Engineering</li>
+              <li>Data Analysis & Visualization</li>
+              <li>Computer Vision</li>
+              <li>Research & Model Evaluation</li>
             </ul>
           </div>
-        </section>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <h4 className="font-medium mb-2">Tech Stack</h4>
+            <ul className="text-sm space-y-1">
+              <li>Python, SQL, C++</li>
+              <li>PyTorch, TensorFlow, Scikit-Learn</li>
+              <li>Pandas, NumPy</li>
+              <li>FastAPI, Docker, AWS</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-        <section id="projects" className="mb-12">
+      <section id="projects" className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold">Selected Projects</h2>
             <p className="text-sm opacity-80">Detailed case studies and repos below.</p>
@@ -278,4 +292,3 @@ export default function Portfolio() {
     </div>
   );
 }
-
