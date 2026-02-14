@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-
 // This is a single-file Next.js-compatible React component (pages/index.tsx or app/page.tsx style)
 // Tailwind CSS is used for styling. Replace placeholder links/descriptions with your real content.
 
@@ -123,7 +122,7 @@ export default function Portfolio() {
             engineering constraints.
           </p>
           <div className="mt-8 flex gap-4 flex-wrap">
-            <a href="#" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">Download Resume</a>
+            <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">Download Resume</a>
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">GitHub</a>
             <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">LinkedIn</a>
           </div>
@@ -225,7 +224,7 @@ export default function Portfolio() {
               high-quality synthetic images. Achieved a 94% realism rating and reduced model collapse
               by 20% through improved training strategies.
             </p>
-            <p className="mt-3 text-sm italic">Paper link will be added soon.</p>
+            <p className="mt-3 text-sm italic"><a href="https://orcid.org/0009-0005-2068-8898" target="_blank" className="inline-block mt-3 text-sm underline">View publication (ORCID)</a></p>
           </div>
         </section>
 
@@ -286,6 +285,9 @@ export default function Portfolio() {
         </section>
 
         <footer className="py-8 text-center text-sm opacity-80">
+          <div className="mb-2">
+            <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="underline">Download Resume</a> · <a href="https://orcid.org/0009-0005-2068-8898" target="_blank" className="underline">Research</a>
+          </div>
           © {new Date().getFullYear()} {name} — Built with Next.js + Tailwind • Ready for Vercel deploy
         </footer>
       </main>
