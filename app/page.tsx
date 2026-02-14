@@ -1,10 +1,41 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+
 // This is a single-file Next.js-compatible React component (pages/index.tsx or app/page.tsx style)
 // Tailwind CSS is used for styling. Replace placeholder links/descriptions with your real content.
 
 const projects = [
+  {
+    id: 101,
+    title: "Stock Price Prediction using LSTM",
+    subtitle: "Time-series forecasting & production ML pipeline",
+    description:
+      "Built an end-to-end LSTM-based time series forecasting system incorporating technical indicators (RSI, MACD, SMA) and sentiment signals. Designed the full pipeline from data ingestion to model training, evaluation, and deployment.",
+    tech: ["Python", "LSTM", "TensorFlow", "FastAPI", "AWS", "Docker"],
+    repo: "https://github.com/rajkamalsingh",
+    demo: "#",
+    impact: [
+      "15% improvement over baseline models",
+      "MAE: 1.73, RMSE: 2.91",
+      "Automated daily retraining pipeline"
+    ]
+  },
+  {
+    id: 102,
+    title: "Real-Time Face Detection & Emotion Classification",
+    subtitle: "Computer Vision & CNN-based inference system",
+    description:
+      "Developed a real-time computer vision system for face detection followed by gender and emotion classification using CNN architectures and OpenCV. Optimized inference for real-time performance.",
+    tech: ["Python", "OpenCV", "CNN", "Computer Vision"],
+    repo: "https://github.com/rajkamalsingh",
+    demo: "#",
+    impact: [
+      "Face detection accuracy: 98%",
+      "Gender classification accuracy: 92%",
+      "Emotion recognition accuracy: 87%"
+    ]
+  },
   {
     id: 1,
     title: "LSTM Stock Price Prediction",
@@ -68,6 +99,10 @@ const projects = [
 
 export default function Portfolio() {
   const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
   useEffect(() => {
     const saved = typeof window !== "undefined" && localStorage.getItem("theme");
     if (saved) setDark(saved === "dark");
@@ -80,9 +115,9 @@ export default function Portfolio() {
 
   const name = "Raj"; // personalized from your input
   const tagline = "Your Tagline Here (we will finalize later)";
-  const linkedin = "#";
-  const github = "#";
-  const email = "your.email@example.com";
+  const linkedin = "https://www.linkedin.com/in/raj-kamal-singh13/";
+  const github = "https://github.com/rajkamalsingh";
+  const email = "rajkamalsingh0001@gmail.com";
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
@@ -165,25 +200,24 @@ export default function Portfolio() {
 
           <div className="grid gap-6 md:grid-cols-2">
             {projects.map((p) => (
-              <article
-                key={p.id}
-                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-              >
+              <article key={p.id} className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-lg font-semibold">{p.title}</h3>
                 <p className="text-sm opacity-80 mt-1">{p.subtitle}</p>
-                <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-                  {p.description}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">{p.description}</p>
+                <ul className="mt-4 text-sm list-disc list-inside space-y-1">
+                  {p.impact?.map((i) => <li key={i}>{i}</li>)}
+                </ul>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {p.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs border rounded-full px-2 py-1 opacity-90"
-                    >
-                      {t}
-                    </span>
+                    <span key={t} className="text-xs border rounded-full px-2 py-1">{t}</span>
                   ))}
                 </div>
+                <div className="mt-4 flex gap-3">
+                  <a href={p.repo} className="text-sm underline">Repo</a>
+                </div>
+              </article>
+            ))}
+          </div>
 
                 <div className="mt-4 flex gap-3">
                   <a href={p.repo} className="text-sm underline">
@@ -294,3 +328,4 @@ export default function Portfolio() {
     </div>
   );
 }
+
