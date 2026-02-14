@@ -129,7 +129,7 @@ export default function Portfolio() {
           </div>
         </div>
         <div className="flex justify-center">
-          <img src="/profile.jpg" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
+          <img src="/public/profile.jpg" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
         </div>
       </section>
 
