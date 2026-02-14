@@ -192,45 +192,54 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="projects" className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold">Selected Projects</h2>
-            <p className="text-sm opacity-80">Detailed case studies and repos below.</p>
-          </div>
+      <section id="projects" className="mb-20">
+         <h2 className="text-2xl font-semibold mb-6">Selected Projects</h2>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {projects.map((p) => (
-              <article key={p.id} className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-lg font-semibold">{p.title}</h3>
-                <p className="text-sm opacity-80 mt-1">{p.subtitle}</p>
-                <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">{p.description}</p>
-                <ul className="mt-4 text-sm list-disc list-inside space-y-1">
-                  {p.impact?.map((i) => <li key={i}>{i}</li>)}
-                </ul>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tech.map((t) => (
-                    <span key={t} className="text-xs border rounded-full px-2 py-1">{t}</span>
-                  ))}
-                </div>
-                <div className="mt-4 flex gap-3">
-                  <a href={p.repo} className="text-sm underline">Repo</a>
-                </div>
-              </article>
-            ))}
-          </div>
+		  <div className="grid gap-6 md:grid-cols-2">
+			{projects.map((p) => (
+			  <article
+				key={p.id}
+				className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+			  >
+				<h3 className="text-lg font-semibold">{p.title}</h3>
+				<p className="text-sm opacity-80 mt-1">{p.subtitle}</p>
 
-                <div className="mt-4 flex gap-3">
-                  <a href={p.repo} className="text-sm underline">
-                    Repo
-                  </a>
-                  <a href={p.demo} className="text-sm underline">
-                    Demo
-                  </a>
-                </div>
-              </article>
-            )}
-          </div>
-        </section>
+				<p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+				  {p.description}
+				</p>
+
+				{p.impact && (
+				  <ul className="mt-4 text-sm list-disc list-inside space-y-1">
+					{p.impact.map((i) => (
+					  <li key={i}>{i}</li>
+					))}
+				  </ul>
+				)}
+
+				<div className="mt-4 flex flex-wrap gap-2">
+				  {p.tech.map((t) => (
+					<span
+					  key={t}
+					  className="text-xs border rounded-full px-2 py-1"
+					>
+					  {t}
+					</span>
+				  ))}
+				</div>
+
+				<div className="mt-4">
+				  <a
+					href={p.repo}
+					target="_blank"
+					className="text-sm underline"
+				  >
+					GitHub Repo
+				  </a>
+				</div>
+			  </article>
+			))}
+		  </div>
+		</section>
 
         <section id="about" className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Education</h2>
