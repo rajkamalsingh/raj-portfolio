@@ -229,7 +229,7 @@ export default function Portfolio() {
                 </div>
               </article>
             ))}
-          </div>
+          
         </section>
 
         <section id="about" className="mb-16">
