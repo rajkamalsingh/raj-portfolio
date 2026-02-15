@@ -36,7 +36,7 @@ const projects = [
       "Emotion recognition accuracy: 87%"
     ]
   },
-  {
+  /*{
     id: 1,
     title: "LSTM Stock Price Prediction",
     subtitle: "LSTM + daily retraining pipeline",
@@ -45,7 +45,7 @@ const projects = [
     tech: ["Python", "Keras", "Docker", "AWS"],
     repo: "https://github.com/your-github/stock-prediction",
     demo: "#"
-  },
+  },*/
   {
     id: 2,
     title: "Bitcoin Real-Time Anomaly Detection",
@@ -56,7 +56,7 @@ const projects = [
     repo: "https://github.com/your-github/bitcoin-anomaly",
     demo: "#"
   },
-  {
+  /*{
     id: 3,
     title: "Fashion-MNIST Experiments",
     subtitle: "PCA / Kernel PCA / SVM / k-means",
@@ -65,7 +65,7 @@ const projects = [
     tech: ["Python", "NumPy", "Scikit-Learn"],
     repo: "https://github.com/your-github/fashion-mnist",
     demo: "#"
-  },
+  },*/
   {
     id: 4,
     title: "RAG Chatbot (File Uploads)",
@@ -193,7 +193,7 @@ export default function Portfolio() {
       </section>
 
       <section id="projects" className="mb-20">
-         <h2 className="text-2xl font-semibold mb-6">Selected Projects</h2>
+         <h2 className="text-2xl font-semibold mb-6">Projects</h2>
 
 		  <div className="grid gap-6 md:grid-cols-2">
 			{projects.map((p) => (
