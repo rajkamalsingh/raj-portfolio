@@ -85,7 +85,7 @@ const projects = [
     tech: ["Kafka", "Flink", "Docker"],
     repo: "https://github.com/your-github/etl-pipeline",
     demo: "#"
-  },
+  }/*,
   {
     id: 999,
     title: "New Project Placeholder",
@@ -94,24 +94,11 @@ const projects = [
     tech: ["Tech1", "Tech2"],
     repo: "#",
     demo: "#"
-  }
+  }*/
 ];
 
 export default function Portfolio() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
-  useEffect(() => {
-    const saved = typeof window !== "undefined" && localStorage.getItem("theme");
-    if (saved) setDark(saved === "dark");
-  }, []);
-  useEffect(() => {
-    if (dark) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-    localStorage.setItem("theme", dark ? "dark" : "light");
-  }, [dark]);
+  
 
   const name = "Raj"; // personalized from your input
   const tagline = "Your Tagline Here (we will finalize later)";
@@ -120,22 +107,25 @@ export default function Portfolio() {
   const email = "rajkamalsingh0001@gmail.com";
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+    <div className="min-h-screen bg-gray-50  text-gray-900  transition-colors">
       <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
-          <p className="mt-1 text-sm opacity-80">Data Scientist | Machine Learning Engineer | Data & AI Systems</p>
+          <p className="text-lg text-gray-700 max-w-2xl">
+            Data Scientist with experience in machine learning, time-series
+            forecasting, and computer vision, with a strong interest in applied
+            research and data-driven systems.
+          </p>
         </div>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-4 text-sm">
+            <a href="#home" className="hover:underline">Home</a>
             <a href="#projects" className="hover:underline">Projects</a>
-            <a href="#skills" className="hover:underline">Skills</a>
+            //<a href="#skills" className="hover:underline">Skills</a>
             <a href="#about" className="hover:underline">About</a>
             <a href="#contact" className="hover:underline">Contact</a>
           </nav>
-          <button onClick={() => setDark((d) => !d)} className="border rounded-md px-3 py-1 text-sm">
-            {dark ? "Light" : "Dark"}
-          </button>
+          
         </div>
       </header>
 
@@ -145,21 +135,21 @@ export default function Portfolio() {
           <h2 className="text-4xl font-semibold leading-tight">
             Building data-driven systems that scale from analysis to production
           </h2>
-          <p className="mt-6 leading-relaxed text-gray-700 dark:text-gray-300">
+          <p className="mt-6 leading-relaxed text-gray-700 ">
             I am a Data Scientist and Machine Learning Engineer with experience across data analysis,
             predictive modeling, deep learning, and production ML systems. Currently pursuing an
             M.S. in Data Science at the University of Maryland, I focus on transforming data into
             reliable, real-world solutions.
           </p>
-          <p className="mt-4 leading-relaxed text-gray-700 dark:text-gray-300">
+          <p className="mt-4 leading-relaxed text-gray-700 ">
             My work spans time-series forecasting, computer vision, research-driven model development,
             and cloud-based deployment. I enjoy bridging research ideas with practical business and
             engineering constraints.
           </p>
           <div className="mt-8 flex gap-4 flex-wrap">
-            <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">Download Resume</a>
-            <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">GitHub</a>
-            <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800">LinkedIn</a>
+            <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">Download Resume</a>
+            <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
+            <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">LinkedIn</a>
           </div>
         </div>
         <div className="flex justify-center">
@@ -170,7 +160,7 @@ export default function Portfolio() {
         <section id="skills" className="mb-20">
         <h2 className="text-2xl font-semibold mb-6">Skills Snapshot</h2>
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+          <div className="bg-white  p-6 rounded-xl shadow-sm">
             <h4 className="font-medium mb-2">Core Expertise</h4>
             <ul className="text-sm space-y-1">
               <li>Machine Learning & Deep Learning</li>
@@ -180,7 +170,7 @@ export default function Portfolio() {
               <li>Research & Model Evaluation</li>
             </ul>
           </div>
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+          <div className="bg-white  p-6 rounded-xl shadow-sm">
             <h4 className="font-medium mb-2">Tech Stack</h4>
             <ul className="text-sm space-y-1">
               <li>Python, SQL, C++</li>
@@ -199,12 +189,12 @@ export default function Portfolio() {
 			{projects.map((p) => (
 			  <article
 				key={p.id}
-				className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+				className="p-6 bg-white  rounded-xl shadow-sm hover:shadow-md transition-shadow"
 			  >
 				<h3 className="text-lg font-semibold">{p.title}</h3>
 				<p className="text-sm opacity-80 mt-1">{p.subtitle}</p>
 
-				<p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+				<p className="mt-3 text-sm leading-relaxed text-gray-700 ">
 				  {p.description}
 				</p>
 
@@ -240,16 +230,42 @@ export default function Portfolio() {
 			))}
 		  </div>
 		</section>
+        <section id="about" className="mb-20 max-w-3xl">
+		  <h2 className="text-2xl font-semibold mb-4">About Me</h2>
 
-        <section id="about" className="mb-16">
+		  <p className="text-gray-700 leading-relaxed mb-4">
+			I am a Data Scientist with a strong foundation in machine learning, statistical modeling,
+			and data analysis, currently focused on building data-driven systems that are both
+			theoretically sound and practically deployable. My work spans time-series forecasting,
+			computer vision, and applied research, with hands-on experience across the full machine
+			learning lifecycle.
+		  </p>
+
+		  <p className="text-gray-700 leading-relaxed mb-4">
+			I have worked extensively with real-world datasets, designing end-to-end pipelines that
+			involve data preprocessing, feature engineering, model development, evaluation, and
+			deployment. My technical experience includes deep learning models such as LSTMs and CNNs,
+			as well as classical machine learning techniques for structured data and predictive
+			analytics.
+		  </p>
+
+		  <p className="text-gray-700 leading-relaxed">
+			In addition to applied industry projects, I have research experience and a published
+			research paper, reflecting my interest in rigorous experimentation and analytical thinking.
+			I am actively seeking roles in data science, data analysis, machine learning, and research,
+			where I can contribute to impactful data-driven decision making while continuing to grow
+			as a practitioner and researcher.
+		  </p>
+		</section>
+        <section id="education" className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Education</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <div className="bg-white  p-6 rounded-xl shadow-sm">
               <h4 className="font-medium">M.S. in Data Science</h4>
               <p className="text-sm mt-1">University of Maryland, College Park</p>
               <p className="text-sm mt-1">CGPA: 3.86 · Expected May 2026</p>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <div className="bg-white  p-6 rounded-xl shadow-sm">
               <h4 className="font-medium">B.Tech in Computer Science & Engineering</h4>
               <p className="text-sm mt-1">University of Petroleum and Energy Studies</p>
               <p className="text-sm mt-1">CGPA: 7.92 · June 2020</p>
@@ -259,10 +275,10 @@ export default function Portfolio() {
 
         <section className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Research & Publications</h2>
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+          <div className="bg-white  p-6 rounded-xl shadow-sm">
             <h4 className="font-medium">GAN & IEC Approach for Image Generation</h4>
             <p className="text-sm mt-2">IEEE ISMSIT 2022</p>
-            <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            <p className="mt-3 text-sm leading-relaxed text-gray-700 ">
               Developed a GAN model coupled with Improved Evolutionary Computing (IEC) to generate
               high-quality synthetic images. Achieved a 94% realism rating and reduced model collapse
               by 20% through improved training strategies.
@@ -274,7 +290,7 @@ export default function Portfolio() {
         <section className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Professional Experience</h2>
           <div className="grid gap-6">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <div className="bg-white  p-6 rounded-xl shadow-sm">
               <h4 className="font-medium">Quality Analyst — Nimbbl</h4>
               <p className="text-sm mt-1">July 2022 – July 2024</p>
               <ul className="mt-3 text-sm list-disc list-inside space-y-1">
@@ -284,7 +300,7 @@ export default function Portfolio() {
               </ul>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+            <div className="bg-white  p-6 rounded-xl shadow-sm">
               <h4 className="font-medium">Quality Assurance Engineer — LTI</h4>
               <p className="text-sm mt-1">June 2020 – June 2022</p>
               <ul className="mt-3 text-sm list-disc list-inside space-y-1">
@@ -316,7 +332,7 @@ export default function Portfolio() {
             <div className="flex gap-3">
               <button
                 type="button"
-                className="px-4 py-2 rounded-md border hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="px-4 py-2 rounded-md border hover:bg-gray-100 "
               >
                 Send
               </button>
