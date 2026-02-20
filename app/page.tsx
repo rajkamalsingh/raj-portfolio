@@ -109,7 +109,14 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gray-50  text-gray-900  transition-colors">
       <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
-        
+        /*<div>
+          <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
+          <p className="text-lg text-gray-700 max-w-2xl">
+            Data Scientist with experience in machine learning, time-series
+            forecasting, and computer vision, with a strong interest in applied
+            research and data-driven systems.
+          </p>
+        </div>*/
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-4 text-sm">
             <a href="#home" className="hover:underline">Home</a>
@@ -124,22 +131,22 @@ export default function Portfolio() {
 
       <main className="max-w-5xl mx-auto px-6 py-8">
         <section className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center mb-20">
+        <div className="md:col-span-2">
           <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
           <p className="text-lg text-gray-700 max-w-2xl">
             Data Scientist with experience in machine learning, time-series
             forecasting, and computer vision, with a strong interest in applied
             research and data-driven systems.
           </p>
-          <div className="flex justify-center">
-          <img src="/profile.JPG" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
-          </div>
           <div className="mt-8 flex gap-4 flex-wrap">
             <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">Download Resume</a>
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
             <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">LinkedIn</a>
           </div>
-        
-        
+        </div>
+        <div className="flex justify-center">
+          <img src="/profile.JPG" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
+        </div>
       </section>
 
         <section id="skills" className="mb-20">
