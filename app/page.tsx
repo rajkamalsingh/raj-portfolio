@@ -165,13 +165,13 @@ export default function Portfolio() {
 				  {p.description}
 				</p>
 
-				{p.impact && (
+				/*{p.impact && (
 				  <ul className="mt-4 text-sm list-disc list-inside space-y-1">
 					{p.impact.map((i) => (
 					  <li key={i}>{i}</li>
 					))}
 				  </ul>
-				)}
+				)}*/
 
 				<div className="mt-4 flex flex-wrap gap-2">
 				  {p.tech.map((t) => (
