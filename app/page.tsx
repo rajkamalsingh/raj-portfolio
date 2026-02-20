@@ -109,19 +109,12 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gray-50  text-gray-900  transition-colors">
       <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
-          <p className="text-lg text-gray-700 max-w-2xl">
-            Data Scientist with experience in machine learning, time-series
-            forecasting, and computer vision, with a strong interest in applied
-            research and data-driven systems.
-          </p>
-        </div>
+        
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-4 text-sm">
             <a href="#home" className="hover:underline">Home</a>
             <a href="#projects" className="hover:underline">Projects</a>
-            //<a href="#skills" className="hover:underline">Skills</a>
+            
             <a href="#about" className="hover:underline">About</a>
             <a href="#contact" className="hover:underline">Contact</a>
           </nav>
@@ -131,21 +124,14 @@ export default function Portfolio() {
 
       <main className="max-w-5xl mx-auto px-6 py-8">
         <section className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center mb-20">
-        <div className="md:col-span-2">
-          <h2 className="text-4xl font-semibold leading-tight">
-            Building data-driven systems that scale from analysis to production
-          </h2>
-          <p className="mt-6 leading-relaxed text-gray-700 ">
-            I am a Data Scientist and Machine Learning Engineer with experience across data analysis,
-            predictive modeling, deep learning, and production ML systems. Currently pursuing an
-            M.S. in Data Science at the University of Maryland, I focus on transforming data into
-            reliable, real-world solutions.
+        <div>
+          <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
+          <p className="text-lg text-gray-700 max-w-2xl">
+            Data Scientist with experience in machine learning, time-series
+            forecasting, and computer vision, with a strong interest in applied
+            research and data-driven systems.
           </p>
-          <p className="mt-4 leading-relaxed text-gray-700 ">
-            My work spans time-series forecasting, computer vision, research-driven model development,
-            and cloud-based deployment. I enjoy bridging research ideas with practical business and
-            engineering constraints.
-          </p>
+        </div>
           <div className="mt-8 flex gap-4 flex-wrap">
             <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">Download Resume</a>
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
