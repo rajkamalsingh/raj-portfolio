@@ -137,7 +137,7 @@ export default function Portfolio() {
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
             <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">LinkedIn</a>
           </div>
-        </div>
+        
         <div className="flex justify-center">
           <img src="/profile.JPG" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
         </div>
