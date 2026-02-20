@@ -124,14 +124,13 @@ export default function Portfolio() {
 
       <main className="max-w-5xl mx-auto px-6 py-8">
         <section className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center mb-20">
-        <div>
           <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
           <p className="text-lg text-gray-700 max-w-2xl">
             Data Scientist with experience in machine learning, time-series
             forecasting, and computer vision, with a strong interest in applied
             research and data-driven systems.
           </p>
-        </div>
+
           <div className="mt-8 flex gap-4 flex-wrap">
             <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">Download Resume</a>
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
