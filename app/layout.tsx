@@ -18,6 +18,10 @@ export const metadata = {
     "Portfolio of Raj Kamal Singh — Data Scientist specializing in machine learning, time-series forecasting, computer vision, and applied research.",
 };
 
+<head>
+  <link rel="icon" href="/favicon.ico" />
+</head>
+
 export default function RootLayout({
   children,
 }: Readonly<{
