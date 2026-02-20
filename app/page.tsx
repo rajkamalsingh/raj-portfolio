@@ -130,16 +130,16 @@ export default function Portfolio() {
             forecasting, and computer vision, with a strong interest in applied
             research and data-driven systems.
           </p>
-
+          <div className="flex justify-center">
+          <img src="/profile.JPG" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
+          </div>
           <div className="mt-8 flex gap-4 flex-wrap">
             <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">Download Resume</a>
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
             <a href={linkedin} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">LinkedIn</a>
           </div>
         
-        <div className="flex justify-center">
-          <img src="/profile.JPG" alt="Raj Kamal Singh" className="w-48 h-48 object-cover rounded-full shadow-md" />
-        </div>
+        
       </section>
 
         <section id="skills" className="mb-20">
