@@ -6,36 +6,7 @@ import React, { useState, useEffect } from "react";
 // Tailwind CSS is used for styling. Replace placeholder links/descriptions with your real content.
 
 const projects = [
-  /*{
-    id: 101,
-    title: "Stock Price Prediction using LSTM",
-    subtitle: "Time-series forecasting & production ML pipeline",
-    description:
-      "Built an end-to-end LSTM-based time series forecasting system incorporating technical indicators (RSI, MACD, SMA) and sentiment signals. Designed the full pipeline from data ingestion to model training, evaluation, and deployment.",
-    tech: ["Python", "LSTM", "TensorFlow", "FastAPI", "AWS", "Docker"],
-    repo: "https://github.com/rajkamalsingh",
-    demo: "#",
-    impact: [
-      "15% improvement over baseline models",
-      "MAE: 1.73, RMSE: 2.91",
-      "Automated daily retraining pipeline"
-    ]
-  },
-  {
-    id: 102,
-    title: "Real-Time Face Detection & Emotion Classification",
-    subtitle: "Computer Vision & CNN-based inference system",
-    description:
-      "Developed a real-time computer vision system for face detection followed by gender and emotion classification using CNN architectures and OpenCV. Optimized inference for real-time performance.",
-    tech: ["Python", "OpenCV", "CNN", "Computer Vision"],
-    repo: "https://github.com/rajkamalsingh",
-    demo: "#",
-    impact: [
-      "Face detection accuracy: 98%",
-      "Gender classification accuracy: 92%",
-      "Emotion recognition accuracy: 87%"
-    ]
-  },*/
+  
   {
     id: 1,
     title: "LSTM Stock Price Prediction",
@@ -48,7 +19,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "LSTM Stock Price Prediction",
+    title: "Real-Time Face Detection & Emotion Classification",
     subtitle: "Computer Vision & CNN-based inference system",
     description:
       "Developed a real-time computer vision system for face detection and emotion classification using CNNs and OpenCV, optimized for live inference.",
