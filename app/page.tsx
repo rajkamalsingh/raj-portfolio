@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 // Tailwind CSS is used for styling. Replace placeholder links/descriptions with your real content.
 
 const projects = [
-  {
+  /*{
     id: 101,
     title: "Stock Price Prediction using LSTM",
     subtitle: "Time-series forecasting & production ML pipeline",
@@ -35,19 +35,29 @@ const projects = [
       "Gender classification accuracy: 92%",
       "Emotion recognition accuracy: 87%"
     ]
-  },
-  /*{
+  },*/
+  {
     id: 1,
     title: "LSTM Stock Price Prediction",
     subtitle: "LSTM + daily retraining pipeline",
     description:
-      "End-to-end LSTM model for next-day stock prediction with automated daily data ingestion and retraining. Includes visualization and deployment-ready Docker image.",
+      "Built an LSTM-based time-series forecasting pipeline for stock price prediction using historical market data, feature engineering, and model evaluation to assess real-world performance.",
     tech: ["Python", "Keras", "Docker", "AWS"],
     repo: "https://github.com/your-github/stock-prediction",
     demo: "#"
-  },*/
+  },
   {
     id: 2,
+    title: "LSTM Stock Price Prediction",
+    subtitle: "Computer Vision & CNN-based inference system",
+    description:
+      "Developed a real-time computer vision system for face detection and emotion classification using CNNs and OpenCV, optimized for live inference.",
+    tech: ["Python", "Keras", "Docker", "AWS"],
+    repo: "https://github.com/your-github/stock-prediction",
+    demo: "#"
+  },
+  {
+    id: 3,
     title: "Bitcoin Real-Time Anomaly Detection",
     subtitle: "AWS Lambda + real-time dashboard",
     description:
@@ -109,14 +119,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gray-50  text-gray-900  transition-colors">
       <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
-        /*<div>
-          <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
-          <p className="text-lg text-gray-700 max-w-2xl">
-            Data Scientist with experience in machine learning, time-series
-            forecasting, and computer vision, with a strong interest in applied
-            research and data-driven systems.
-          </p>
-        </div>*/
+        
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-4 text-sm">
             <a href="#home" className="hover:underline">Home</a>
@@ -134,10 +137,11 @@ export default function Portfolio() {
         <div className="md:col-span-2">
           <h1 className="text-3xl font-bold">Raj Kamal Singh</h1>
           <p className="text-lg text-gray-700 max-w-2xl">
-            Data Scientist with experience in machine learning, time-series
-            forecasting, and computer vision, with a strong interest in applied
-            research and data-driven systems.
+            Data Scientist specializing in machine learning, time-series forecasting, and computer vision.
           </p>
+		  <p className="text-lg text-gray-700 max-w-2xl">
+		    Experienced in building end-to-end data-driven systems, with a strong interest in applied research and real-world impact.
+		  </p>
           <div className="mt-8 flex gap-4 flex-wrap">
             <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">Download Resume</a>
             <a href={github} className="border px-4 py-2 rounded-md text-sm hover:bg-gray-100 ">GitHub</a>
@@ -226,27 +230,15 @@ export default function Portfolio() {
 		  <h2 className="text-2xl font-semibold mb-4">About Me</h2>
 
 		  <p className="text-gray-700 leading-relaxed mb-4">
-			I am a Data Scientist with a strong foundation in machine learning, statistical modeling,
-			and data analysis, currently focused on building data-driven systems that are both
-			theoretically sound and practically deployable. My work spans time-series forecasting,
-			computer vision, and applied research, with hands-on experience across the full machine
-			learning lifecycle.
+			I am a Data Scientist with a strong foundation in machine learning, statistical modeling, and data analysis, focused on building data-driven systems that are both theoretically sound and practically deployable. My work spans time-series forecasting, computer vision, and applied research, with hands-on experience across the full machine learning lifecycle.
 		  </p>
 
 		  <p className="text-gray-700 leading-relaxed mb-4">
-			I have worked extensively with real-world datasets, designing end-to-end pipelines that
-			involve data preprocessing, feature engineering, model development, evaluation, and
-			deployment. My technical experience includes deep learning models such as LSTMs and CNNs,
-			as well as classical machine learning techniques for structured data and predictive
-			analytics.
+			I have worked extensively with real-world datasets, designing end-to-end pipelines that involve data preprocessing, feature engineering, model development, evaluation, and deployment. My technical experience includes deep learning models such as LSTMs and CNNs, as well as classical machine learning techniques for structured data and predictive analytics.
 		  </p>
 
 		  <p className="text-gray-700 leading-relaxed">
-			In addition to applied industry projects, I have research experience and a published
-			research paper, reflecting my interest in rigorous experimentation and analytical thinking.
-			I am actively seeking roles in data science, data analysis, machine learning, and research,
-			where I can contribute to impactful data-driven decision making while continuing to grow
-			as a practitioner and researcher.
+			In addition to applied industry projects, I have research experience and a published research paper, reflecting my interest in rigorous experimentation and analytical thinking. I am actively seeking roles in data science, data analysis, machine learning, and research, where I can contribute to impactful data-driven decision-making while continuing to grow as a practitioner and researcher.
 		  </p>
 		</section>
         <section id="education" className="mb-16">
