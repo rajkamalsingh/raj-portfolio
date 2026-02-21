@@ -14,7 +14,7 @@ const projects = [
     description:
       "Built an LSTM-based time-series forecasting pipeline for stock price prediction using historical market data, feature engineering, and model evaluation to assess real-world performance.",
     tech: ["Python", "Keras", "Docker", "AWS"],
-    repo: "https://github.com/your-github/stock-prediction",
+    repo: "https://github.com/rajkamalsingh",
     demo: "#"
   },
   {
@@ -24,7 +24,7 @@ const projects = [
     description:
       "Developed a real-time computer vision system for face detection and emotion classification using CNNs and OpenCV, optimized for live inference.",
     tech: ["Python", "Keras", "Docker", "AWS"],
-    repo: "https://github.com/your-github/stock-prediction",
+    repo: "https://github.com/rajkamalsingh",
     demo: "#"
   },
   {
@@ -34,7 +34,7 @@ const projects = [
     description:
       "Low-latency anomaly detection pipeline for crypto price and volume anomalies using serverless functions and a live dashboard for alerts.",
     tech: ["AWS Lambda", "Python", "Dash"],
-    repo: "https://github.com/your-github/bitcoin-anomaly",
+    repo: "https://github.com/rajkamalsingh",
     demo: "#"
   },
   /*{
@@ -54,9 +54,9 @@ const projects = [
     description:
       "A RAG-based chatbot supporting document uploads, search, and fine-grained Q&A over user files. Built with FastAPI and vector DBs.",
     tech: ["FastAPI", "LLMs", "Vector DBs"],
-    repo: "https://github.com/your-github/rag-chatbot",
+    repo: "https://github.com/rajkamalsingh",
     demo: "#"
-  },
+  }/*,
   {
     id: 5,
     title: "Real-Time ETL Pipeline",
@@ -64,7 +64,7 @@ const projects = [
     description:
       "Generic, modular ETL pipeline for multiple data sources using Kafka, Flink and Kibana for monitoring and observability.",
     tech: ["Kafka", "Flink", "Docker"],
-    repo: "https://github.com/your-github/etl-pipeline",
+    repo: "https://github.com/rajkamalsingh",
     demo: "#"
   }/*,
   {
@@ -261,36 +261,45 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="contact" className="mb-20">
-          <h2 className="text-xl font-semibold mb-4">Get in touch</h2>
-          <p className="text-sm mb-4">Email me at <strong>{email}</strong> or open a PR on any repo.</p>
+        
+        <section id="contact" className="max-w-5xl mx-auto px-6 py-20">
+			  <h2 className="text-3xl font-bold mb-6">Let’s Connect</h2>
 
-          <form className="grid gap-3 max-w-xl">
-            <input
-              placeholder="Your name"
-              className="border rounded-md px-3 py-2 bg-transparent"
-            />
-            <input
-              placeholder="Your email"
-              className="border rounded-md px-3 py-2 bg-transparent"
-            />
-            <textarea
-              placeholder="Message"
-              className="border rounded-md px-3 py-2 bg-transparent min-h-[120px]"
-            />
-            <div className="flex gap-3">
-              <button
-                type="button"
-                className="px-4 py-2 rounded-md border hover:bg-gray-100 "
-              >
-                Send
-              </button>
-              <a href={github} className="px-4 py-2 rounded-md border inline-block">
-                View GitHub
-              </a>
-            </div>
-          </form>
-        </section>
+			  <p className="text-gray-600 mb-8 max-w-2xl">
+				I’m open to roles across data science, analytics, engineering, and research.
+				The best way to reach me is via email or LinkedIn.
+			  </p>
+
+			  <div className="flex flex-col sm:flex-row gap-4">
+				<a
+				  href="mailto:rajkamalsingh0001@gmail.com"
+				  className="px-6 py-3 rounded-lg bg-black text-white text-center hover:opacity-90"
+				>
+				  Email Me
+				</a>
+
+				<a
+				  href="https://www.linkedin.com/in/raj-kamal-singh13/"
+				  target="_blank"
+				  rel="noopener noreferrer"
+				  className="px-6 py-3 rounded-lg border border-black text-black text-center hover:bg-gray-100"
+				>
+				  LinkedIn
+				</a>
+
+				<a
+				  href="https://github.com/rajkamalsingh"
+				  target="_blank"
+				  rel="noopener noreferrer"
+				  className="px-6 py-3 rounded-lg border border-black text-black text-center hover:bg-gray-100"
+				>
+				  GitHub
+				</a>
+			  </div>
+		</section>
+
+		  
+       
 
         <footer className="py-8 text-center text-sm opacity-80">
           <div className="mb-2">
