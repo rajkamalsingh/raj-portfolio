@@ -18,11 +18,12 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "LSTM Stock Price Prediction",
-    subtitle: "Time-series forecasting with daily retraining",
+    title: "Stock Price Prediction Using LSTM",
+    subtitle: "Time-series forecasting with engineered technical indicators",
     description:
-      "An LSTM-based forecasting pipeline for stock price prediction, covering historical data ingestion, feature engineering, and model evaluation to assess real-world forecasting performance against naive baselines.",
-    tech: ["Python", "Keras", "Docker", "AWS"],
+      "An end-to-end LSTM forecasting pipeline enriched with technical indicators (RSI, MACD, SMA) and news sentiment as an auxiliary signal, deployed as a production-style prediction API with automated daily retraining.",
+    metric: "15% accuracy improvement over baseline · MAE 1.73 · RMSE 2.91",
+    tech: ["Python", "TensorFlow", "FastAPI", "Docker", "AWS EC2"],
     repo: "https://github.com/rajkamalsingh/fintech_project",
   },
   {
@@ -37,21 +38,23 @@ const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Bitcoin Real-Time Anomaly Detection",
-    subtitle: "Serverless pipeline + live alert dashboard",
+    title: "Real-Time Bitcoin Anomaly Detection",
+    subtitle: "Streaming ETL + Isolation Forest on AWS",
     description:
-      "A low-latency anomaly detection pipeline for crypto price and volume anomalies, running on serverless infrastructure with a live dashboard for alerting.",
-    tech: ["AWS Lambda", "Python", "Dash"],
+      "A real-time streaming ETL pipeline (Kinesis Streams + Apache Flink + Lambda) processing 10K+ records/day with sub-second detection latency, using an Isolation Forest model for anomaly scoring with SNS-based alerting, visualized through an S3 + Athena + QuickSight analytics layer.",
+    metric: "~30% precision improvement over threshold baselines · 60% less manual monitoring",
+    tech: ["AWS Kinesis", "Apache Flink", "Lambda", "Isolation Forest"],
     repo: "https://github.com/rajkamalsingh",
     repoLabel: "GitHub Profile (repo link coming soon)",
   },
   {
     id: 4,
-    title: "RAG Chatbot with File Uploads",
-    subtitle: "Retrieval-augmented generation over user documents",
+    title: "RAG-Based QA System",
+    subtitle: "Fine-tuned FLAN-T5 at 4,000× data scale",
     description:
-      "A RAG-based chatbot supporting document uploads, semantic search, and fine-grained Q&A over user files, built on a FastAPI backend with a vector database for retrieval.",
-    tech: ["FastAPI", "LLMs", "Vector DBs"],
+      "Scaled a generative question-answering pipeline from a 20-example custom FAQ dataset to 87K+ SQuAD-style examples, fine-tuning FLAN-T5 with Hugging Face Transformers using mixed-precision training, and deploying an interactive Gradio inference app.",
+    metric: "87K+ training examples · 4,000× scale-up from initial dataset",
+    tech: ["Python", "Hugging Face", "FLAN-T5", "Gradio"],
     repo: "https://github.com/rajkamalsingh/llm-rag-basics",
   },
   {
@@ -87,23 +90,34 @@ const projects: Project[] = [
 
 const experience = [
   {
-    role: "Quality Analyst",
-    org: "Nimbbl",
-    period: "July 2022 – July 2024",
+    role: "Data Analyst",
+    org: "Fidelity Investments",
+    period: "May 2025 – Present",
     points: [
-      "Reduced critical production defects by 30% through workflow optimization.",
-      "Implemented API automation using JMeter, improving test execution speed by 50%.",
-      "Resolved 92% of reported issues within sprint cycles using data-driven analysis.",
+      "Built Python and SQL analytical workflows to validate large-scale financial datasets, improving reporting accuracy by 25% and cutting manual analysis effort by 40%.",
+      "Built automated data-quality monitoring pipelines using Python and Pandas, reducing data inconsistencies by 30%.",
+      "Designed interactive dashboards and KPI reporting using AWS Athena and QuickSight, cutting stakeholder reporting turnaround time by 50%.",
+      "Partnered with data engineering to optimize ETL workflows, reducing data retrieval latency by 35%.",
     ],
   },
   {
-    role: "Quality Assurance Engineer",
+    role: "Data Analyst",
+    org: "Nimbbl",
+    period: "July 2022 – July 2024",
+    points: [
+      "Analyzed high-volume production datasets and application logs using SQL and Python, identifying failure patterns that contributed to a 30% reduction in production defects.",
+      "Performed root-cause analysis, statistical validation, and hypothesis testing to evaluate system enhancements.",
+      "Built automated validation frameworks and data-quality checks, cutting manual verification effort by 45%.",
+    ],
+  },
+  {
+    role: "Quality Analyst",
     org: "LTI",
     period: "June 2020 – June 2022",
     points: [
-      "Reduced post-release defects by 25% through systematic test design.",
-      "Managed 500+ test cases ensuring 100% functional coverage.",
-      "Achieved 97% on-time delivery across multiple enterprise projects.",
+      "Developed data-driven validation frameworks across 2,000+ test scenarios, contributing to a 25% reduction in post-release defects.",
+      "Automated test data preparation and validation workflows using SQL and Python, cutting repetitive manual effort by 35%.",
+      "Produced testing metrics and release-readiness analyses supporting 97% on-time delivery across client engagements.",
     ],
   },
 ];
@@ -125,10 +139,11 @@ function SectionKicker({ index, label }: { index: string; label: string }) {
 export default function Portfolio() {
   const name = "Raj Kamal Singh";
   const tagline =
-    "Data Scientist turning messy real-world data into deployable ML systems.";
+    "Data Analyst by trade, Data Scientist by ambition — turning messy data into decisions and deployable ML systems.";
   const linkedin = "https://www.linkedin.com/in/raj-kamal-singh13/";
   const github = "https://github.com/rajkamalsingh";
   const email = "rajkamalsingh0001@gmail.com";
+  const phone = "+1 (240) 861-1109";
 
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-accent selection:text-ink">
@@ -164,14 +179,14 @@ export default function Portfolio() {
           <div className="max-w-6xl mx-auto px-6 py-24 md:py-32 grid md:grid-cols-3 gap-12 items-center relative">
             <div className="md:col-span-2">
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-2 mb-5">
-                Data Scientist · ML · Applied Research
+                Data Analyst · Aspiring Data Scientist · ML &amp; Research
               </p>
               <h1 className="font-display text-5xl md:text-6xl leading-[1.05] mb-6">
                 {name}
               </h1>
               <p className="text-xl text-paper-dim max-w-xl mb-4">{tagline}</p>
               <p className="text-base text-muted max-w-xl mb-10">
-                Experienced in building end-to-end data-driven systems, with a strong interest in applied research and real-world impact — from time-series forecasting to computer vision.
+                4+ years building data-driven systems in industry, now pursuing an M.S. in Data Science at the University of Maryland. Open to roles in Data Science, Data Analytics, Data Engineering, and Applied Research.
               </p>
               <div className="flex gap-4 flex-wrap">
                 <a
@@ -214,24 +229,32 @@ export default function Portfolio() {
         {/* Skills */}
         <section className="max-w-6xl mx-auto px-6 py-20 border-t border-line">
           <SectionKicker index="01" label="Skills" />
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-xl mb-4">Core Expertise</h4>
-              <ul className="text-sm space-y-2 text-paper-dim">
-                <li>Machine Learning &amp; Deep Learning</li>
-                <li>Time Series Forecasting &amp; Feature Engineering</li>
-                <li>Data Analysis &amp; Visualization</li>
-                <li>Computer Vision</li>
-                <li>Research &amp; Model Evaluation</li>
-              </ul>
-            </div>
-            <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-xl mb-4">Tech Stack</h4>
+              <h4 className="font-display text-xl mb-4">Programming &amp; ML</h4>
               <ul className="text-sm space-y-2 text-paper-dim font-mono">
                 <li>Python, SQL, C++</li>
                 <li>PyTorch, TensorFlow, Scikit-Learn</li>
+                <li>LSTM, GANs, A/B Testing</li>
+                <li>Hypothesis Testing, Statistical Modeling</li>
+              </ul>
+            </div>
+            <div className="bg-panel border border-line p-7 rounded-2xl">
+              <h4 className="font-display text-xl mb-4">Data &amp; BI</h4>
+              <ul className="text-sm space-y-2 text-paper-dim font-mono">
                 <li>Pandas, NumPy</li>
-                <li>FastAPI, Docker, AWS</li>
+                <li>Power BI, Tableau, DAX</li>
+                <li>EDA, ETL Pipelines</li>
+                <li>Regression &amp; Classification</li>
+              </ul>
+            </div>
+            <div className="bg-panel border border-line p-7 rounded-2xl">
+              <h4 className="font-display text-xl mb-4">Cloud &amp; Tools</h4>
+              <ul className="text-sm space-y-2 text-paper-dim font-mono">
+                <li>AWS (S3, EC2, Athena, QuickSight)</li>
+                <li>AWS Kinesis, Lambda</li>
+                <li>Snowflake, Databricks</li>
+                <li>Docker, Git</li>
               </ul>
             </div>
           </div>
@@ -298,13 +321,13 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2 space-y-5 text-paper-dim leading-relaxed">
               <p>
-                I&apos;m a Data Scientist with a strong foundation in machine learning, statistical modeling, and data analysis, focused on building data-driven systems that are both theoretically sound and practically deployable. My work spans time-series forecasting, computer vision, and applied research, with hands-on experience across the full machine learning lifecycle.
+                I&apos;m a Data Analyst with 4+ years of professional experience turning large-scale operational and financial datasets into decisions — currently at Fidelity Investments, previously at Nimbbl and LTI. I&apos;m pursuing an M.S. in Data Science at the University of Maryland (GPA 3.86, expected May 2026) to move deeper into machine learning, and I&apos;m actively looking for my next role across Data Science, Data Analytics, Data Engineering, and Applied Research.
               </p>
               <p>
-                I&apos;ve worked extensively with real-world datasets, designing end-to-end pipelines that involve data preprocessing, feature engineering, model development, evaluation, and deployment. My technical experience includes deep learning models such as LSTMs and CNNs, as well as classical machine learning techniques for structured data and predictive analytics.
+                My project work spans the full ML lifecycle — time-series forecasting with LSTMs, NLP systems built on fine-tuned transformer models, and real-time anomaly detection on streaming infrastructure — from data preprocessing and feature engineering through deployment and monitoring.
               </p>
               <p>
-                In addition to applied industry projects, I have research experience and a published research paper, reflecting my interest in rigorous experimentation and analytical thinking. I&apos;m actively seeking roles in data science, data analysis, machine learning, and research, where I can contribute to impactful data-driven decision-making.
+                I also have research experience and a published paper at IEEE ISMSIT, reflecting my interest in rigorous experimentation. Beyond the numbers, I care about translating data into insights that actually change decisions.
               </p>
             </div>
             <div className="space-y-4">
@@ -318,7 +341,7 @@ export default function Portfolio() {
               </div>
               <div className="bg-panel border border-line rounded-2xl p-6">
                 <p className="font-display text-3xl text-accent">4+ yrs</p>
-                <p className="text-sm text-muted mt-1">Professional QA &amp; data experience</p>
+                <p className="text-sm text-muted mt-1">Professional data analytics experience</p>
               </div>
             </div>
           </div>
@@ -393,9 +416,10 @@ export default function Portfolio() {
               Get in touch
             </p>
             <h2 className="font-display text-4xl md:text-5xl mb-6">Let&rsquo;s connect.</h2>
-            <p className="text-paper-dim max-w-xl mx-auto mb-10">
+            <p className="text-paper-dim max-w-xl mx-auto mb-2">
               I&rsquo;m open to roles across data science, analytics, engineering, and research. The best way to reach me is via email or LinkedIn.
             </p>
+            <p className="text-sm text-muted font-mono mb-10">{phone}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={`mailto:${email}`}

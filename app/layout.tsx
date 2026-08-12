@@ -19,9 +19,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Raj Kamal Singh | Data Scientist",
+  title: "Raj Kamal Singh | Data Analyst & Data Scientist",
   description:
-    "Portfolio of Raj Kamal Singh — Data Scientist specializing in machine learning, time-series forecasting, computer vision, and applied research.",
+    "Portfolio of Raj Kamal Singh — Data Analyst with 4+ years of experience, pursuing an M.S. in Data Science, working across machine learning, time-series forecasting, computer vision, and applied research.",
 };
 
 export default function RootLayout({
