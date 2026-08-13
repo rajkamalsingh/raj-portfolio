@@ -103,6 +103,28 @@ export default async function ProjectPage({
           </ol>
         </section>
 
+        {project.images && project.images.length > 0 && (
+          <section className="mb-12">
+            <h2 className="font-display text-2xl mb-4 text-accent-2">Visuals</h2>
+            <div className="grid gap-6">
+              {project.images.map((img) => (
+                <figure key={img.src}>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full rounded-2xl border border-line bg-panel"
+                  />
+                  {img.caption && (
+                    <figcaption className="mt-2 text-sm text-muted">
+                      {img.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="mb-12">
           <h2 className="font-display text-2xl mb-4 text-accent-2">Results</h2>
           <div className="bg-panel border border-line rounded-2xl p-6 space-y-3">

@@ -1,3 +1,9 @@
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type Project = {
   id: number;
   slug: string;
@@ -11,6 +17,7 @@ export type Project = {
   tech: string[];
   repo: string;
   repoLabel?: string;
+  images?: ProjectImage[];
 };
 
 export const projects: Project[] = [
@@ -177,13 +184,27 @@ export const projects: Project[] = [
       "Visualized findings with Matplotlib scatter and correlation plots for interpretability.",
     ],
     results: [
-      "Surfaced sector-level differences in how valuation metrics correlate with each other.",
-      "Showed that relationships holding for one sector don't necessarily hold across the index as a whole.",
+      "Market Cap and EBITDA are the strongest pair in the matrix at 0.90 correlation — largely mechanical, since EBITDA drives valuation.",
+      "EPS correlates with Price at 0.47 but only 0.08 with P/E — a stock's earnings power says almost nothing about how expensive it is relative to peers.",
+      "Financials had both the highest median EPS and the widest spread across companies; Real Estate the lowest and most compressed.",
+      "Overall median EPS across the index sits at $5.24, with big dispersion by sector rather than a single 'typical' company.",
     ],
     reflection:
       "This project was a reminder that treating an index like the S&P 500 as one uniform group hides a lot of signal — the same valuation relationship can look completely different once you slice by sector.",
     tech: ["Python", "Pandas", "Matplotlib"],
     repo: "https://github.com/rajkamalsingh/Data_analytics",
+    images: [
+      {
+        src: "/sp500-correlation.png",
+        alt: "Correlation matrix heatmap of S&P 500 financial metrics including Price, P/E, EPS, Dividend Yield, Market Cap, EBITDA, P/S, and P/B",
+        caption: "Correlation matrix across core valuation metrics — Market Cap and EBITDA correlate at 0.90.",
+      },
+      {
+        src: "/sp500-eps-by-sector.png",
+        alt: "Box plot showing EPS distribution by sector across the S&P 500, with Financials showing the highest median and widest spread",
+        caption: "EPS distribution by sector — Financials leads on both median and spread; overall median is $5.24.",
+      },
+    ],
   },
 ];
 

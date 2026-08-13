@@ -253,6 +253,13 @@ export default function Portfolio() {
                 key={p.id}
                 className="group p-7 bg-panel border border-line rounded-2xl hover:border-accent/60 transition-colors flex flex-col"
               >
+                {p.images && p.images[0] && (
+                  <img
+                    src={p.images[0].src}
+                    alt={p.images[0].alt}
+                    className="w-full h-40 object-cover rounded-lg border border-line mb-5"
+                  />
+                )}
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-display text-xl leading-snug">{p.title}</h3>
                   <span className="font-mono text-xs text-muted shrink-0 pt-1">
