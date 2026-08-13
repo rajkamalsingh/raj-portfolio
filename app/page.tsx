@@ -1,92 +1,13 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
+import { projects } from "./lib/projects";
 
 // Single-file Next.js page component. Tailwind v4 with custom theme tokens
 // defined in globals.css (color-ink, color-paper, color-accent, etc).
+// Project data lives in ./lib/projects.ts and is shared with the
+// /projects/[slug] case study pages.
 
-type Project = {
-  id: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  metric?: string;
-  tech: string[];
-  repo: string;
-  repoLabel?: string;
-};
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Stock Price Prediction Using LSTM",
-    subtitle: "Time-series forecasting with engineered technical indicators",
-    description:
-      "An end-to-end LSTM forecasting pipeline enriched with technical indicators (RSI, MACD, SMA) and news sentiment as an auxiliary signal, deployed as a production-style prediction API with automated daily retraining.",
-    metric: "15% accuracy improvement over baseline · MAE 1.73 · RMSE 2.91",
-    tech: ["Python", "TensorFlow", "FastAPI", "Docker", "AWS EC2"],
-    repo: "https://github.com/rajkamalsingh/fintech_project",
-  },
-  {
-    id: 2,
-    title: "Real-Time Face Detection & Emotion Classification",
-    subtitle: "Computer vision & CNN-based inference",
-    description:
-      "A real-time computer vision system for face detection and emotion classification using CNNs and OpenCV, optimized for low-latency live inference on streaming video.",
-    tech: ["Python", "Keras", "OpenCV", "Docker"],
-    repo: "https://github.com/rajkamalsingh",
-    repoLabel: "GitHub Profile (repo link coming soon)",
-  },
-  {
-    id: 3,
-    title: "Real-Time Bitcoin Anomaly Detection",
-    subtitle: "Streaming ETL + Isolation Forest on AWS",
-    description:
-      "A real-time streaming ETL pipeline (Kinesis Streams + Apache Flink + Lambda) processing 10K+ records/day with sub-second detection latency, using an Isolation Forest model for anomaly scoring with SNS-based alerting, visualized through an S3 + Athena + QuickSight analytics layer.",
-    metric: "~30% precision improvement over threshold baselines · 60% less manual monitoring",
-    tech: ["AWS Kinesis", "Apache Flink", "Lambda", "Isolation Forest"],
-    repo: "https://github.com/rajkamalsingh",
-    repoLabel: "GitHub Profile (repo link coming soon)",
-  },
-  {
-    id: 4,
-    title: "RAG-Based QA System",
-    subtitle: "Fine-tuned FLAN-T5 at 4,000× data scale",
-    description:
-      "Scaled a generative question-answering pipeline from a 20-example custom FAQ dataset to 87K+ SQuAD-style examples, fine-tuning FLAN-T5 with Hugging Face Transformers using mixed-precision training, and deploying an interactive Gradio inference app.",
-    metric: "87K+ training examples · 4,000× scale-up from initial dataset",
-    tech: ["Python", "Hugging Face", "FLAN-T5", "Gradio"],
-    repo: "https://github.com/rajkamalsingh/llm-rag-basics",
-  },
-  {
-    id: 5,
-    title: "Food Context Classification via Transfer Learning",
-    subtitle: "ResNet-50 · home vs. restaurant vs. packaged food",
-    description:
-      "Studied how a pretrained ResNet-50 classifies food images by scene context — home, restaurant, or packaged — rather than by the food itself, then compared four training strategies (baseline, augmentation, synthetic noise, and combined) to see which actually helped.",
-    metric: "94.52% test accuracy (baseline beat every augmented variant)",
-    tech: ["PyTorch", "ResNet-50", "Transfer Learning"],
-    repo: "https://github.com/rajkamalsingh/food_context_classification",
-  },
-  {
-    id: 6,
-    title: "Real-World Lane Detection",
-    subtitle: "Classical computer vision under adverse conditions",
-    description:
-      "Built a classical edge-based lane detection pipeline (Canny + Hough transform) and stress-tested it against shadows, motion blur, and bright light, then improved robustness with adaptive thresholds, histogram equalization, and slope filtering.",
-    metric: "Adaptive pipeline cut false detections vs. the fixed-threshold baseline",
-    tech: ["Python", "OpenCV", "Canny/Hough"],
-    repo: "https://github.com/rajkamalsingh/llm-rag-basics/tree/main/lane_detection_project",
-  },
-  {
-    id: 7,
-    title: "S&P 500 Fundamentals Analytics",
-    subtitle: "Cross-sector valuation & volatility study",
-    description:
-      "A statistical analysis of S&P 500 company fundamentals — EPS, P/E, P/B, dividends, and volatility — exploring correlations between valuation metrics and how they vary across sectors.",
-    tech: ["Python", "Pandas", "Matplotlib"],
-    repo: "https://github.com/rajkamalsingh/Data_analytics",
-  },
-];
 
 const experience = [
   {
@@ -341,12 +262,12 @@ export default function Portfolio() {
                 <p className="text-sm text-accent mt-1">{p.subtitle}</p>
 
                 <p className="mt-4 text-sm leading-relaxed text-paper-dim flex-1">
-                  {p.description}
+                  {p.summary}
                 </p>
 
-                {p.metric && (
+                {p.results[0] && (
                   <p className="mt-4 text-sm font-mono text-accent-2 border-l-2 border-accent-2/40 pl-3">
-                    {p.metric}
+                    {p.results[0]}
                   </p>
                 )}
 
@@ -361,15 +282,21 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                <div className="mt-5 pt-5 border-t border-line">
+                <div className="mt-5 pt-5 border-t border-line flex items-center justify-between gap-4">
+                  <Link
+                    href={`/projects/${p.slug}`}
+                    className="text-sm text-accent hover:opacity-80 transition-opacity inline-flex items-center gap-1.5"
+                  >
+                    Read case study
+                    <span aria-hidden>&rarr;</span>
+                  </Link>
                   <a
                     href={p.repo}
                     target="_blank" rel="noopener noreferrer"
-                    className="text-sm text-paper hover:text-accent transition-colors inline-flex items-center gap-1.5"
+                    className="text-sm text-paper-dim hover:text-accent transition-colors"
                   >
-                    {p.repoLabel ?? "View on GitHub"}
+                    {p.repoLabel ? "GitHub Profile" : "GitHub"}
                     <span className="sr-only"> (opens in new tab)</span>
-                    <span aria-hidden>&rarr;</span>
                   </a>
                 </div>
               </article>
