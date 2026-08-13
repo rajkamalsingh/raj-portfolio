@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 // Single-file Next.js page component. Tailwind v4 with custom theme tokens
 // defined in globals.css (color-ink, color-paper, color-accent, etc).
@@ -122,9 +122,18 @@ const experience = [
   },
 ];
 
-function SectionKicker({ index, label }: { index: string; label: string }) {
+function SectionKicker({
+  index,
+  label,
+  hideHeading = false,
+}: {
+  index: string;
+  label: string;
+  hideHeading?: boolean;
+}) {
   return (
     <div className="flex items-center gap-3 mb-4">
+      {!hideHeading && <h2 className="sr-only">{label}</h2>}
       <span className="font-mono text-sm text-accent-2 tracking-widest">
         {index}
       </span>
@@ -137,6 +146,17 @@ function SectionKicker({ index, label }: { index: string; label: string }) {
 }
 
 export default function Portfolio() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
   const name = "Raj Kamal Singh";
   const tagline =
     "Data Analyst by trade, Data Scientist by ambition — turning messy data into decisions and deployable ML systems.";
@@ -153,20 +173,61 @@ export default function Portfolio() {
           <a href="#home" className="font-display text-lg tracking-wide">
             RKS
           </a>
-          <nav className="hidden md:flex gap-8 text-sm text-paper-dim">
+          <nav className="hidden md:flex gap-8 text-sm text-paper-dim" aria-label="Primary">
             <a href="#projects" className="hover:text-accent transition-colors">Projects</a>
             <a href="#experience" className="hover:text-accent transition-colors">Experience</a>
             <a href="#about" className="hover:text-accent transition-colors">About</a>
             <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
           </nav>
-          <a
-            href="/Raj_Kamal_Singh_Resume.pdf"
-            target="_blank"
-            className="text-sm border border-line rounded-full px-4 py-1.5 hover:border-accent hover:text-accent transition-colors"
-          >
-            Resume
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="/Raj_Kamal_Singh_Resume.pdf"
+              target="_blank" rel="noopener noreferrer"
+              className="hidden sm:inline-block text-sm border border-line rounded-full px-4 py-1.5 hover:border-accent hover:text-accent transition-colors"
+            >
+              Resume
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="md:hidden w-11 h-11 flex items-center justify-center border border-line rounded-lg"
+            >
+              <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
+              {menuOpen ? (
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M1 1L17 17M17 1L1 17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+                  <path d="M0 1H18M0 7H18M0 13H18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <nav
+            id="mobile-menu"
+            aria-label="Mobile"
+            className="md:hidden border-t border-line bg-ink px-6 py-4 flex flex-col gap-1 text-sm text-paper-dim"
+          >
+            <a href="#projects" onClick={() => setMenuOpen(false)} className="py-3 hover:text-accent transition-colors">Projects</a>
+            <a href="#experience" onClick={() => setMenuOpen(false)} className="py-3 hover:text-accent transition-colors">Experience</a>
+            <a href="#about" onClick={() => setMenuOpen(false)} className="py-3 hover:text-accent transition-colors">About</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="py-3 hover:text-accent transition-colors">Contact</a>
+            <a
+              href="/Raj_Kamal_Singh_Resume.pdf"
+              target="_blank" rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="py-3 text-accent"
+            >
+              Resume
+            </a>
+          </nav>
+        )}
       </header>
 
       <main>
@@ -181,7 +242,7 @@ export default function Portfolio() {
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-2 mb-5">
                 Data Analyst · Aspiring Data Scientist · ML &amp; Research
               </p>
-              <h1 className="font-display text-5xl md:text-6xl leading-[1.05] mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6">
                 {name}
               </h1>
               <p className="text-xl text-paper-dim max-w-xl mb-4">{tagline}</p>
@@ -191,24 +252,24 @@ export default function Portfolio() {
               <div className="flex gap-4 flex-wrap">
                 <a
                   href="/Raj_Kamal_Singh_Resume.pdf"
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="bg-accent text-ink font-medium px-6 py-3 rounded-lg text-sm hover:opacity-90 transition-opacity"
                 >
-                  Download Resume
+                  Download Resume<span className="sr-only"> (opens in new tab)</span>
                 </a>
                 <a
                   href={github}
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="border border-line px-6 py-3 rounded-lg text-sm hover:border-accent hover:text-accent transition-colors"
                 >
-                  GitHub
+                  GitHub<span className="sr-only"> (opens in new tab)</span>
                 </a>
                 <a
                   href={linkedin}
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="border border-line px-6 py-3 rounded-lg text-sm hover:border-accent hover:text-accent transition-colors"
                 >
-                  LinkedIn
+                  LinkedIn<span className="sr-only"> (opens in new tab)</span>
                 </a>
               </div>
             </div>
@@ -231,7 +292,7 @@ export default function Portfolio() {
           <SectionKicker index="01" label="Skills" />
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-xl mb-4">Programming &amp; ML</h4>
+              <h3 className="font-display text-xl mb-4">Programming &amp; ML</h3>
               <ul className="text-sm space-y-2 text-paper-dim font-mono">
                 <li>Python, SQL, C++</li>
                 <li>PyTorch, TensorFlow, Scikit-Learn</li>
@@ -240,7 +301,7 @@ export default function Portfolio() {
               </ul>
             </div>
             <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-xl mb-4">Data &amp; BI</h4>
+              <h3 className="font-display text-xl mb-4">Data &amp; BI</h3>
               <ul className="text-sm space-y-2 text-paper-dim font-mono">
                 <li>Pandas, NumPy</li>
                 <li>Power BI, Tableau, DAX</li>
@@ -249,7 +310,7 @@ export default function Portfolio() {
               </ul>
             </div>
             <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-xl mb-4">Cloud &amp; Tools</h4>
+              <h3 className="font-display text-xl mb-4">Cloud &amp; Tools</h3>
               <ul className="text-sm space-y-2 text-paper-dim font-mono">
                 <li>AWS (S3, EC2, Athena, QuickSight)</li>
                 <li>AWS Kinesis, Lambda</li>
@@ -262,7 +323,7 @@ export default function Portfolio() {
 
         {/* Projects */}
         <section id="projects" className="max-w-6xl mx-auto px-6 py-20 border-t border-line">
-          <SectionKicker index="02" label="Selected Projects" />
+          <SectionKicker index="02" label="Selected Projects" hideHeading />
           <h2 className="font-display text-3xl mb-10">Projects</h2>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -303,10 +364,11 @@ export default function Portfolio() {
                 <div className="mt-5 pt-5 border-t border-line">
                   <a
                     href={p.repo}
-                    target="_blank"
+                    target="_blank" rel="noopener noreferrer"
                     className="text-sm text-paper hover:text-accent transition-colors inline-flex items-center gap-1.5"
                   >
                     {p.repoLabel ?? "View on GitHub"}
+                    <span className="sr-only"> (opens in new tab)</span>
                     <span aria-hidden>&rarr;</span>
                   </a>
                 </div>
@@ -352,12 +414,12 @@ export default function Portfolio() {
           <SectionKicker index="04" label="Education" />
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-lg">M.S. in Data Science</h4>
+              <h3 className="font-display text-lg">M.S. in Data Science</h3>
               <p className="text-sm mt-2 text-paper-dim">University of Maryland, College Park</p>
               <p className="text-sm mt-1 text-muted font-mono">GPA 3.86 / 4.0 · Expected May 2026</p>
             </div>
             <div className="bg-panel border border-line p-7 rounded-2xl">
-              <h4 className="font-display text-lg">B.Tech in Computer Science &amp; Engineering</h4>
+              <h3 className="font-display text-lg">B.Tech in Computer Science &amp; Engineering</h3>
               <p className="text-sm mt-2 text-paper-dim">University of Petroleum and Energy Studies</p>
               <p className="text-sm mt-1 text-muted font-mono">CGPA 7.92 / 10 (~3.5 / 4.0) · June 2020</p>
             </div>
@@ -369,7 +431,7 @@ export default function Portfolio() {
           <SectionKicker index="05" label="Research & Publications" />
           <div className="bg-panel border border-line rounded-2xl p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-3 mb-3">
-              <h4 className="font-display text-xl">GAN &amp; IEC Approach for Image Generation</h4>
+              <h3 className="font-display text-xl">GAN &amp; IEC Approach for Image Generation</h3>
               <span className="text-xs font-mono text-muted">IEEE ISMSIT 2022</span>
             </div>
             <p className="text-sm leading-relaxed text-paper-dim">
@@ -377,10 +439,10 @@ export default function Portfolio() {
             </p>
             <a
               href="https://orcid.org/0009-0005-2068-8898"
-              target="_blank"
+              target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 mt-4 text-sm text-accent hover:opacity-80"
             >
-              View publication (ORCID) <span aria-hidden>&rarr;</span>
+              View publication (ORCID)<span className="sr-only"> (opens in new tab)</span> <span aria-hidden>&rarr;</span>
             </a>
           </div>
         </section>
@@ -392,7 +454,7 @@ export default function Portfolio() {
             {experience.map((e) => (
               <div key={e.org} className="grid md:grid-cols-4 gap-6 pb-8 border-b border-line last:border-b-0">
                 <div>
-                  <h4 className="font-display text-lg">{e.role}</h4>
+                  <h3 className="font-display text-lg">{e.role}</h3>
                   <p className="text-sm text-accent mt-1">{e.org}</p>
                   <p className="text-xs font-mono text-muted mt-1">{e.period}</p>
                 </div>
@@ -429,17 +491,17 @@ export default function Portfolio() {
               </a>
               <a
                 href={linkedin}
-                target="_blank"
+                target="_blank" rel="noopener noreferrer"
                 className="px-7 py-3.5 rounded-lg border border-line hover:border-accent hover:text-accent transition-colors"
               >
-                LinkedIn
+                LinkedIn<span className="sr-only"> (opens in new tab)</span>
               </a>
               <a
                 href={github}
-                target="_blank"
+                target="_blank" rel="noopener noreferrer"
                 className="px-7 py-3.5 rounded-lg border border-line hover:border-accent hover:text-accent transition-colors"
               >
-                GitHub
+                GitHub<span className="sr-only"> (opens in new tab)</span>
               </a>
             </div>
           </div>
@@ -447,9 +509,9 @@ export default function Portfolio() {
 
         <footer className="border-t border-line py-8 text-center text-sm text-muted">
           <div className="mb-2">
-            <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" className="hover:text-accent">Resume</a>
+            <a href="/Raj_Kamal_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-accent">Resume<span className="sr-only"> (opens in new tab)</span></a>
             {" · "}
-            <a href="https://orcid.org/0009-0005-2068-8898" target="_blank" className="hover:text-accent">Research</a>
+            <a href="https://orcid.org/0009-0005-2068-8898" target="_blank" rel="noopener noreferrer" className="hover:text-accent">Research<span className="sr-only"> (opens in new tab)</span></a>
           </div>
           &copy; {new Date().getFullYear()} {name}
         </footer>
