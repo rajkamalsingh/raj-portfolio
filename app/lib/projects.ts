@@ -75,16 +75,16 @@ export const projects: Project[] = [
     id: 3,
     slug: "bitcoin-anomaly-detection",
     title: "Real-Time Bitcoin Anomaly Detection",
-    subtitle: "Streaming ETL + Isolation Forest on AWS",
+    subtitle: "Kinesis + Lambda pipeline with SNS alerting",
     summary:
-      "A real-time streaming ETL pipeline (Kinesis Streams + Apache Flink + Lambda) processing 10K+ records/day with sub-second detection latency, using an Isolation Forest model for anomaly scoring with SNS-based alerting, visualized through an S3 + Athena + QuickSight analytics layer.",
+      "A real-time streaming pipeline on AWS — Kinesis ingests raw data, a Lambda function scores each record with an Isolation Forest model and fires SNS alerts on anomalies, while parallel Firehose deliveries feed S3, Athena, and a QuickSight dashboard for live and historical analysis.",
     problem:
       "Cryptocurrency markets move fast and generate huge volumes of tick data — flagging anomalous price or volume behavior only matters if it happens in near real time. The goal was a pipeline that could ingest and process thousands of records a day with sub-second detection latency, without relying on brittle manual thresholds.",
     approach: [
-      "Architected a streaming ETL pipeline on AWS using Kinesis Streams to ingest live data, Apache Flink for stream processing, and Lambda for serverless compute.",
-      "Trained an Isolation Forest model to score incoming data points for anomalousness, replacing simple fixed-threshold rules.",
-      "Wired up SNS-based alerting so anomalies trigger notifications automatically rather than requiring manual monitoring.",
-      "Built an analytics layer on S3 + Athena + QuickSight for historical and real-time visualization of flagged anomalies.",
+      "Ingested raw data through a Kinesis data stream, with a Python processing layer computing derived features and pushing them onto a second, processed Kinesis stream.",
+      "Ran a Lambda function on the processed stream that scores each record with a trained Isolation Forest model, firing an SNS alert immediately whenever an anomaly is flagged.",
+      "Delivered both raw and processed data to S3 via separate Firehose streams, keeping a full historical record independent of the real-time alerting path.",
+      "Queried the S3 data with Athena and built a QuickSight dashboard for real-time and historical visualization.",
     ],
     results: [
       "Processed 10K+ records/day with sub-second anomaly detection latency.",
@@ -93,9 +93,17 @@ export const projects: Project[] = [
     ],
     reflection:
       "Moving from a statistical threshold baseline to a learned Isolation Forest model was the single biggest improvement — thresholds are brittle and need constant re-tuning as market volatility shifts, while the model adapts to the shape of 'normal' data automatically.",
-    tech: ["AWS Kinesis", "Apache Flink", "Lambda", "Isolation Forest"],
+    tech: ["AWS Kinesis", "Lambda", "Isolation Forest", "Firehose", "Athena", "QuickSight"],
     repo: "https://github.com/rajkamalsingh",
     repoLabel: "GitHub Profile (repo link coming soon)",
+    images: [
+      {
+        src: "/bitcoin-architecture.jpeg",
+        alt: "Architecture diagram of the Bitcoin anomaly detection pipeline: Kinesis raw data stream into Python processing, a processed Kinesis stream, a Lambda function running the ML model that sends SNS alerts on anomalies, and parallel Firehose deliveries into S3, Athena, and a QuickSight dashboard",
+        caption:
+          "Pipeline architecture: Kinesis ingestion → Lambda anomaly scoring → SNS alerts, with parallel Firehose delivery into S3, Athena, and QuickSight.",
+      },
+    ],
   },
   {
     id: 4,
@@ -137,13 +145,26 @@ export const projects: Project[] = [
       "Evaluated all four strategies on a held-out test set using consistent metrics for a fair, controlled comparison.",
     ],
     results: [
-      "94.52% test accuracy with the plain baseline transfer-learning model.",
-      "The baseline outperformed every augmented variant — augmentation and synthetic noise did not improve results on this dataset.",
+      "94.5% test accuracy with the plain baseline transfer-learning model — the best of the four.",
+      "Synthetic noise came closest at 93.1%; augmentation alone dropped to 91.7%; combining both hurt most, falling to 86.3%.",
+      "Training curves show validation accuracy plateauing while training accuracy kept climbing — a sign of mild overfitting the augmentation strategies didn't fix.",
     ],
     reflection:
-      "The most useful finding was a negative one: none of the augmentation strategies beat the plain baseline. It's a good reminder that more complexity in a training pipeline isn't automatically better — augmentation choices need to be validated against your specific dataset, not assumed to help.",
+      "The most useful finding was a negative one: none of the augmentation strategies beat the plain baseline, and stacking them made things worse, not better. It's a good reminder that more complexity in a training pipeline isn't automatically better — augmentation choices need to be validated against your specific dataset, not assumed to help.",
     tech: ["PyTorch", "ResNet-50", "Transfer Learning"],
     repo: "https://github.com/rajkamalsingh/food_context_classification",
+    images: [
+      {
+        src: "/food-context-accuracy.png",
+        alt: "Bar chart comparing test accuracy across four training strategies: Baseline at 94.5%, Augmentation at 91.7%, Synthetic at 93.1%, and Combined at 86.3%",
+        caption: "Test accuracy across all four training strategies — baseline wins, combined augmentation+noise loses the most ground.",
+      },
+      {
+        src: "/food-context-training-curves.png",
+        alt: "Line charts showing training and validation loss decreasing over 10 epochs, and training and validation accuracy, with validation accuracy plateauing below training accuracy",
+        caption: "Loss and accuracy curves for the synthetic-noise variant — validation accuracy plateaus while training accuracy keeps climbing.",
+      },
+    ],
   },
   {
     id: 6,
@@ -167,6 +188,18 @@ export const projects: Project[] = [
       "Classical CV techniques like Canny and Hough are fast and interpretable, but this project made clear how fragile fixed-threshold approaches are outside ideal lighting. Adaptive thresholding closed a lot of that gap without needing to reach for a deep-learning-based approach.",
     tech: ["Python", "OpenCV", "Canny/Hough"],
     repo: "https://github.com/rajkamalsingh/llm-rag-basics/tree/main/lane_detection_project",
+    images: [
+      {
+        src: "/lane-detection-overlay.jpg",
+        alt: "Mountain road with detected lane lines overlaid in bright green, extending from the bottom of the frame toward the vanishing point",
+        caption: "Final output — detected lane lines overlaid on a mountain-road test frame.",
+      },
+      {
+        src: "/lane-detection-canny.jpg",
+        alt: "Canny edge detection map of the same road frame, showing white edge outlines of the road, lane lines, and terrain against a black background",
+        caption: "Intermediate step — Canny edge map (thresholds 150/300) feeding the Hough line detection.",
+      },
+    ],
   },
   {
     id: 7,
