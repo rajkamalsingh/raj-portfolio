@@ -200,7 +200,7 @@ export default function Portfolio() {
                 style={{ background: "radial-gradient(circle, var(--color-accent-2), transparent 70%)" }}
               />
               <img
-                src="/profile.JPG"
+                src="/profile.jpeg"
                 alt="Raj Kamal Singh"
                 className="relative w-52 h-52 md:w-60 md:h-60 object-cover rounded-full ring-2 ring-line shadow-2xl"
               />
