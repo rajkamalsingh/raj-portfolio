@@ -25,26 +25,34 @@ export const projects: Project[] = [
     id: 1,
     slug: "lstm-stock-price-prediction",
     title: "Stock Price Prediction Using LSTM",
-    subtitle: "Time-series forecasting with engineered technical indicators",
+    subtitle: "Bidirectional LSTM + attention, retrained daily on fresh data",
     summary:
-      "An end-to-end LSTM forecasting pipeline enriched with technical indicators (RSI, MACD, SMA) and news sentiment as an auxiliary signal, deployed as a production-style prediction API with automated daily retraining.",
+      "A self-updating forecasting pipeline: a daily cron job pulls fresh OHLC prices and news headlines, scores sentiment, and retrains a Bidirectional LSTM with attention on the combined feature set — served through both a FastAPI endpoint and a Streamlit dashboard.",
     problem:
-      "Stock price movement is notoriously hard to predict from raw historical prices alone — a lot of naive forecasting models effectively just lag the actual price by one time step and call it a prediction. The goal was to build something that goes beyond that: using engineered technical indicators and news sentiment as auxiliary signals, then packaging the model as something that could actually run in production rather than live in a notebook.",
+      "Stock price movement is notoriously hard to predict from raw historical prices alone — a lot of naive forecasting models effectively just lag the actual price by one time step and call it a prediction. The goal was to build something that goes beyond that: pulling in technical indicators and daily news sentiment as auxiliary signals, then packaging the whole thing as a pipeline that keeps itself current rather than going stale the day after training.",
     approach: [
-      "Engineered technical indicators (RSI, MACD, SMA) from raw OHLC price data to give the model explicit momentum and trend signals, rather than relying on raw prices alone.",
-      "Incorporated news sentiment as an auxiliary input signal alongside price-based features.",
-      "Trained an LSTM network in TensorFlow across multiple stock tickers, using cross-validation to avoid overfitting to any single ticker's idiosyncrasies.",
-      "Wrapped the trained model in a FastAPI prediction service, containerized with Docker, and deployed to AWS EC2 with a cron-based pipeline for automated daily retraining.",
+      "Ran a daily cron job (weekdays) that pulled fresh OHLC data via yfinance and computed a full technical-indicator set — SMA, MACD, RSI, Bollinger Bands, Stochastic Oscillator, ATR, and OBV.",
+      "In parallel, pulled the day's news headlines via NewsAPI and scored each one with VADER sentiment analysis.",
+      "Merged the two streams by trading day, rolling weekend and holiday sentiment forward onto the next trading day so no signal was silently dropped.",
+      "Retrained a Bidirectional LSTM with an attention mechanism on 16 features across 120-day sequences, using Huber loss for robustness to price outliers.",
+      "Served predictions two ways: a FastAPI /predict endpoint (containerized with Docker, deployed on AWS EC2) for programmatic access, and a Streamlit dashboard for interactive use.",
     ],
     results: [
       "15% improvement in prediction accuracy over baseline models.",
-      "MAE of 1.73 and RMSE of 2.91 on held-out test data across multiple tickers.",
-      "100% reduction in manual maintenance through automated, cron-based daily retraining.",
+      "MAE of 1.73 and RMSE of 2.91 on held-out test data.",
+      "Fully automated daily refresh — new data, new sentiment, and a retrained model with zero manual steps.",
     ],
     reflection:
-      "The biggest lesson was that feature engineering mattered more than model architecture tweaks — the jump from raw prices to indicator-based features moved the needle more than any change to the LSTM itself. If I revisited this, I'd backtest the model against an actual trading strategy rather than point-accuracy metrics alone, since a lower MAE doesn't always translate into profitable decisions.",
-    tech: ["Python", "TensorFlow", "FastAPI", "Docker", "AWS EC2"],
+      "The architecture ended up mattering as much as the data — moving from a plain LSTM to a bidirectional model with attention, and handling the weekend/holiday sentiment gap explicitly, both came from hitting real edge cases while building this rather than being obvious upfront. If I revisited this, I'd backtest the model against an actual trading strategy rather than point-accuracy metrics alone, since a lower MAE doesn't always translate into profitable decisions.",
+    tech: ["Python", "TensorFlow", "FastAPI", "Streamlit", "Docker", "AWS EC2"],
     repo: "https://github.com/rajkamalsingh/fintech_project",
+    images: [
+      {
+        src: "/lstm-architecture.svg",
+        alt: "Architecture diagram showing two parallel daily pipelines — fetching OHLC data and computing technical indicators, and fetching news and scoring sentiment with VADER — merging by trading day, feeding a Bidirectional LSTM with attention, served through both a FastAPI endpoint and a Streamlit dashboard, all triggered by a daily cron job",
+        caption: "Pipeline: parallel stock + news ingestion → trading-day merge → BiLSTM with attention → served via FastAPI and Streamlit, retrained every weekday.",
+      },
+    ],
   },
   {
     id: 2,
@@ -68,8 +76,14 @@ export const projects: Project[] = [
     reflection:
       "This project was as much about systems engineering as machine learning — getting a model that performs well in a notebook to actually run fast enough for live video required real profiling and optimization work, not just training a better model.",
     tech: ["Python", "Keras", "OpenCV", "Docker"],
-    repo: "https://github.com/rajkamalsingh",
-    repoLabel: "GitHub Profile (repo link coming soon)",
+    repo: "https://github.com/rajkamalsingh/human-face-detection-and-emotion-and-gender-classification",
+    images: [
+      {
+        src: "/face-detection-architecture.svg",
+        alt: "Architecture diagram showing a live video stream flowing into OpenCV face detection, then a CNN emotion classifier, then real-time output, with the detection and classification steps running inside a Docker container",
+        caption: "Pipeline: live video → OpenCV face detection → CNN emotion classifier → real-time output, all containerized with Docker.",
+      },
+    ],
   },
   {
     id: 3,
@@ -94,8 +108,7 @@ export const projects: Project[] = [
     reflection:
       "Moving from a statistical threshold baseline to a learned Isolation Forest model was the single biggest improvement — thresholds are brittle and need constant re-tuning as market volatility shifts, while the model adapts to the shape of 'normal' data automatically.",
     tech: ["AWS Kinesis", "Lambda", "Isolation Forest", "Firehose", "Athena", "QuickSight"],
-    repo: "https://github.com/rajkamalsingh",
-    repoLabel: "GitHub Profile (repo link coming soon)",
+    repo: "https://github.com/rajkamalsingh/live-anomaly-detection-btc",
     images: [
       {
         src: "/bitcoin-architecture.jpeg",
