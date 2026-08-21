@@ -57,31 +57,33 @@ export const projects: Project[] = [
   {
     id: 2,
     slug: "face-detection-emotion-classification",
-    title: "Real-Time Face Detection & Emotion Classification",
-    subtitle: "Computer vision & CNN-based inference",
+    title: "Real-Time Face Detection, Gender & Emotion Classification",
+    subtitle: "Two parallel CNNs with Grad-CAM interpretability",
     summary:
-      "A real-time computer vision system for face detection and emotion classification using CNNs and OpenCV, optimized for low-latency live inference on streaming video.",
+      "A real-time vision pipeline that detects faces via Haar Cascades, then runs two separate CNNs in parallel — one classifying gender (IMDB faces, 96% accuracy), one classifying emotion (FER-2013, 66% accuracy, matching human-level performance) — with temporal smoothing to stabilize labels and Grad-CAM visualization to interpret what each model actually learned.",
     problem:
-      "Real-time video applications need to detect faces and read emotional cues fast enough to feel instantaneous — anything that lags noticeably breaks the experience. The challenge was building a CNN-based classification pipeline that could keep up with live video, not just perform well on static test images.",
+      "Reading emotional state or gender from a face is something humans do intuitively but is genuinely hard for a model — human accuracy on 7-class emotion classification is only about 65% ± 5%, and CNN architectures accurate enough for the task are usually too heavy for real-time, hardware-constrained use. The goal was a general framework for building lighter real-time CNNs, validated by a live system that does face detection, gender classification, and emotion classification simultaneously — and to actually look inside the models rather than treat them as black boxes.",
     approach: [
-      "Used OpenCV for face detection on incoming video frames, isolating face regions before classification.",
-      "Trained a CNN-based emotion classifier with Keras on labeled facial expression data.",
-      "Optimized the inference pipeline specifically for low-latency, frame-by-frame processing rather than batch prediction, since the target use case was live video.",
-      "Containerized the pipeline with Docker for consistent deployment across environments.",
+      "Used Haar Cascade classifiers for face detection on each incoming video frame, then extracted two differently-padded crops per face — one RGB crop for gender, one grayscale crop for emotion.",
+      "Compared two lightweight CNN designs: a fully-convolutional network with Global Average Pooling (no fully-connected layers), and a mini-Xception architecture using depth-wise separable convolutions with residual modules — mini-Xception won out for the deployed emotion model.",
+      "Trained the gender classifier on the IMDB faces dataset and the emotion classifier on FER-2013 (7 classes: angry, disgust, fear, happy, sad, surprise, neutral), each independently.",
+      "Applied a 10-frame sliding-window mode filter to both predictions to stop labels from flickering frame-to-frame on live video.",
+      "Implemented guided Grad-CAM visualization to see which pixels each CNN actually used to make its decision, turning both models from black boxes into something inspectable.",
     ],
     results: [
-      "Real-time inference on live video streams.",
-      "Pipeline optimized specifically for low-latency frame-by-frame processing rather than offline batch analysis.",
+      "96% validation accuracy on gender classification (simple CNN, IMDB faces).",
+      "66% validation accuracy on 7-class emotion classification — in line with the ~65% human baseline for the same task.",
+      "Grad-CAM analysis surfaced a real bias: the gender classifier skewed toward western facial features and accessories, and glasses measurably interfered with emotion classification.",
     ],
     reflection:
-      "This project was as much about systems engineering as machine learning — getting a model that performs well in a notebook to actually run fast enough for live video required real profiling and optimization work, not just training a better model.",
-    tech: ["Python", "Keras", "OpenCV", "Docker"],
+      "The most valuable part of this project wasn't the accuracy numbers — it was using Grad-CAM to find that the gender model was biased toward certain facial features and accessories. It's one thing to know CNNs can be biased in theory; it's another to actually visualize your own model doing it. If I revisited this, I'd want to rebalance the training data to specifically address that bias rather than just document it.",
+    tech: ["Python", "Keras", "OpenCV", "Grad-CAM"],
     repo: "https://github.com/rajkamalsingh/human-face-detection-and-emotion-and-gender-classification",
     images: [
       {
         src: "/face-detection-architecture.svg",
-        alt: "Architecture diagram showing a live video stream flowing into OpenCV face detection, then a CNN emotion classifier, then real-time output, with the detection and classification steps running inside a Docker container",
-        caption: "Pipeline: live video → OpenCV face detection → CNN emotion classifier → real-time output, all containerized with Docker.",
+        alt: "Architecture diagram showing a live video frame going through Haar Cascade face detection, then splitting into two parallel branches — an RGB crop feeding a Simple CNN for gender classification at 96% accuracy, and a grayscale crop feeding a Mini-Xception model for emotion classification at 66% accuracy — both converging into 10-frame mode smoothing and a live overlay output, with Grad-CAM shown as an interpretability layer on both classifiers",
+        caption: "Pipeline: face detection → parallel gender/emotion CNNs → temporal smoothing → live overlay, with Grad-CAM for interpretability.",
       },
     ],
   },
